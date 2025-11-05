@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+<title>Calculator Interface</title>
+<link rel="stylesheet" type="text/css" href="calcstyle.css" />
+<script type="text/javascript">
+<![CDATA[
+function appendToDisplay(value) {
+  var result = document.getElementById('result');
+  if (result.innerHTML === '0' && value !== '.') {
+    result.innerHTML = value;
+  } else {
+    result.innerHTML += value;
+  }
+}
+function clearDisplay() {
+  document.getElementById('result').innerHTML = '0';
+}
+function evaluateExpression() {
+  var expression = document.getElementById('result').innerHTML;
+  try {
+    var result = eval(expression.replace(/X/g, '*'));
+    document.getElementById('result').innerHTML = result;
+  } catch (e) {
+    document.getElementById('result').innerHTML = 'Error';
+  }
+}
+]]>
+</script>
+</head>
+<body>
+<div class="calculator">
+  <div class="display">
+    <p id="result">0</p>
+  </div>
+  <div class="buttons">
+    <button onclick="appendToDisplay('(')">(</button>
+    <button onclick="appendToDisplay(')')">)</button>
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="appendToDisplay('%')">%</button>
+
+    <button onclick="appendToDisplay('7')">7</button>
+    <button onclick="appendToDisplay('8')">8</button>
+    <button onclick="appendToDisplay('9')">9</button>
+    <button onclick="appendToDisplay('X')">X</button>
+
+    <button onclick="appendToDisplay('4')">4</button>
+    <button onclick="appendToDisplay('5')">5</button>
+    <button onclick="appendToDisplay('6')">6</button>
+    <button onclick="appendToDisplay('-')">-</button>
+
+    <button onclick="appendToDisplay('1')">1</button>
+    <button onclick="appendToDisplay('2')">2</button>
+    <button onclick="appendToDisplay('3')">3</button>
+    <button onclick="appendToDisplay('+')">+</button>
+
+    <button onclick="appendToDisplay('0')">0</button>
+    <button onclick="appendToDisplay('.')">.</button>
+    <button onclick="appendToDisplay('/')">/</button>
+    <button onclick="evaluateExpression()">=</button>
+  </div>
+</div>
+</body>
+</html>
