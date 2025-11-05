@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Scrolling Text Example</title>
+<style>
+#scrollingText {
+font-size: 24px; font-weight: bold;
+white-space: nowrap; overflow: hidden;}
+</style>
+</head>
+<body>
+<button id="startBtn">Start Scrolling</button>
+<div id="scrollingText">This is some scrolling text!</div>
+<script>
+var scrollingText = document.getElementById("scrollingText");
+var startBtn = document.getElementById("startBtn");
+var textWidth = scrollingText.clientWidth;
+var containerWidth = scrollingText.parentNode.clientWidth;
+var currentPosition = 0;
+function scrollText() {
+if (currentPosition < containerWidth) {
+scrollingText.style.transform = "translateX(-" + currentPosition + "px)";
+currentPosition += 1;
+setTimeout(scrollText, 20);
+} else {
+currentPosition = -textWidth;
+scrollText();
+}
+}
+startBtn.addEventListener("click", function() {
+currentPosition = 0;
+scrollText();
+});
+</script>
+</body>
+</html>
